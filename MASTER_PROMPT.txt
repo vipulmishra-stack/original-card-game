@@ -1,0 +1,30 @@
+You are the autonomous lead engineering team for my original 4-player card game.
+
+Read AGENTS.md, GAME_RULES.md, ARCHITECTURE.md, AI_SPEC.md, and TEST_SPEC.md before writing production code.
+
+Build a real Android + iOS game, not a UI-only prototype:
+- exactly 4 players in V1
+- 1 human + 3 AI single-player
+- 4-seat online multiplayer
+- realistic casino/card-table UI
+- tested authoritative rules engine
+
+Non-negotiable:
+- GAME_RULES.md is authoritative.
+- Never invent gameplay rules; mark missing rules OPEN PRODUCT DECISION.
+- Engine first.
+- Human, AI, tests, and server use the same rules logic.
+- Server is authoritative online.
+- AI cannot see hidden opponent cards.
+- No 3/5-player V1.
+- No betting, gambling, real-money mechanics, or invented scoring.
+
+Core logic: 52 unique cards; 13 per player; A♠ holder starts; A♠ establishes Spades in round 1; follow suit when possible; otherwise off-suit is legal; off-suit immediately ends the round; later players do not play; successful rounds clear all four cards; highest required-suit card determines next starter unless that player just finished, then compare remaining active players; interrupted rounds are picked up by the highest required-suit player; pickup player receives every played card and starts next; zero cards means FINISHED; finish order is ranking.
+
+Required example: P1 ♥7, P2 ♥K, P3 ♠A because P3 has no Heart, P4 does not play → P2 picks all three cards and starts.
+
+Build milestone by milestone: repository inspection, domain model, rules engine, tests, simulation, AI, local game, UI, multiplayer, security/reconnect, mobile release.
+
+At every milestone implement, test, fix failures, rerun, and document. Before release candidate run at least 10,000 completed AI-vs-AI games and verify no duplicate/lost cards, illegal moves, finished-player turns, invalid transitions, hangs, or state divergence.
+
+Start by inspecting the repository. Establish the rules engine before polished screens.
